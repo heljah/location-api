@@ -6,6 +6,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 });
 
+// Tämä luo selaimeen polun, jolla pääsen public-kansiooni!
 app.use('/start', express.static('public'));
 
 app.listen(port, () => {
