@@ -9,12 +9,14 @@ let database = [
     { id: 2, latitude: 40, longitude: 80 },
 ];
 
+app.set('json spaces', 40);
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
 app.get('/api/locations', (req, res) => {
-  res.json(JSON.stringify(database));
+  res.json(database);
 });
 
 app.post('/', function (req, res) {
