@@ -3,12 +3,18 @@ const app = express();
 // Process.env tarvitaan Herokua varten!
 const port = process.env.PORT || 3000;
 
+
+let database = [
+    { id: 1, latitude: 60, longitude: 70 },
+    { id: 2, latitude: 40, longitude: 80 },
+];
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
 app.get('/api/locations', (req, res) => {
-  res.send('fetching all locations');
+  res.send(database);
 });
 
 app.post('/', function (req, res) {
