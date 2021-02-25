@@ -5,17 +5,17 @@ const port = process.env.PORT || 3000;
 let locationsrouter = express.Router();
 
 // Tämä luo selaimeen polun, jolla pääsen public-kansiooni!
-app.use('/start', express.static('public'));
+app.use(express.static('public'));
 
-locationsrouter("/", (req, res) => {
+locationsrouter.get("/", (req, res) => {
     res.json(database);
 })
 
-locationsrouter("/1", (req, res) => {
-    console.log("Fetching only one row where id = 1")
+locationsrouter.get("/1", (req, res) => {
+    res.json(database[1]);
 })
 
-app.get('/api/locations', locationsrouter);
+app.use('/api/locations', locationsrouter);
 
 
 let database = [
