@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/locations', (req, res) => {
-  res.send(database);
+  res.JSON(database);
 });
 
 app.post('/', function (req, res) {
