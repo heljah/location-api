@@ -1,19 +1,15 @@
 
 const mysql = require('mysql');
-// const config = require('./database/mariadbconf');
+const config = require('./database/mariadbconf');
 
-const connection = mysql.createConnection({
-    // config
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'locations'
-});
+const connection = mysql.createConnection(config);
 
 // You may omit this
 connection.connect();
 
-connection.query('insert into locations (latitude, longitude) values (?, ?)', [60,60], 
+connection.query(
+    'insert into locations (latitude, longitude) values (?, ?)', 
+    [60,60], 
     (error, results, fields) => {
         console.log(error);
         console.log(results);
