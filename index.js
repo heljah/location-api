@@ -1,4 +1,11 @@
-const express = require('express');
+
+
+
+
+
+
+// An api without database:
+/* const express = require('express');
 const { body, validationResult } = require('express-validator');
 const app = express();
 // Process.env tarvitaan Herokua varten!
@@ -10,34 +17,30 @@ app.use(express.static('public'));
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-    console.log(req.method);
-    console.log(req.body);
-    if (req.method === "POST") {
-        const location = req.body;
-        if (location.latitude && location.longitude) {
-            const latitude_ok = location.latitude >= -90 && location.latitude <= 90
-            const longitude_ok = location.longitude >= -180 && location.longitude <= 180
-            if (latitude_ok && longitude_ok) {
-                next();
-            } else {
-                res.send(400);
-                res.end();
-            }
+app.post(
+    '/api/locations',
+    // Latitude must be between -60 and 60
+    body('latitude') >= -60 && body('latitude') <= 60,
+    // Longitude must be between -180 and 180
+    body('longitude') >= -180 && body('longitude') <= 180,
+    (req, res) => {
+        // Finds the validation errors in this request and wraps them in an object with handy functions
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
         }
-    } else {
-        next();
-    }
-});
+  
+        location.create({
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+        }).then(location => res.json(location));
+    },
+);
 
 app.use('/api/locations', locationsrouter);
 
 app.set('json spaces', 40);
 
-/* app.get('/', (req, res) => {
-  res.send('Hello World!');
-}); */
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-});
+}); */
