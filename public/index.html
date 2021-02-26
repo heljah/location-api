@@ -5,12 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location app</title>
-    <script src="/public/scripts.js"></script>
 </head>
 <body>
-    <h1>Welcome to the start page!</h1>
-    <div>
-        <span>Tässä ensimmäiset tekstit. Pyöritän appiani Herokun kautta!</span>
-    </div>
+    <h1>Welcome to the Location API!</h1>
+    <ul>
+
+    </ul>
+    <script>        
+        const main = async () => {
+            let hr = await fetch("http://localhost:3000/api/locations")
+            let data = await hr.json()
+            modifiUI(data)
+        }
+        const modifiUI = (data) => {
+            let ul = document.querySelector("ul")
+            ul.innerHTML = data.map((item) => `<li>${item.latitude} - ${item.longitude}</li>`).join("")
+        }
+        main()
+    </script>
 </body>
 </html>
