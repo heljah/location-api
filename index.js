@@ -1,4 +1,5 @@
 const express = require('express');
+const { body, validationResult } = require('express-validator');
 const app = express();
 // Process.env tarvitaan Herokua varten!
 const port = process.env.PORT || 3000;
@@ -19,6 +20,9 @@ app.use((req, res, next) => {
             const longitude_ok = location.longitude >= -180 && location.longitude <= 180
             if (latitude_ok && longitude_ok) {
                 next();
+            } else {
+                res.send(400);
+                res.end();
             }
         }
     } else {
