@@ -4,8 +4,14 @@ const database = require("../database/crudrepository.js");
 
 let locationsrouter = express.Router();
 
-locationsrouter.get("/", (req, res) => {
-    res.json(database.findAll());
+
+locationsrouter.get("/", async (req, res) => {
+    try {
+      let locations = await database.findAll();
+      res.send(locations);
+    } catch (err) {
+      console.log(err);
+    }
 });
 
 locationsrouter.get("/:urlId([0-9]+)", (req, res) => {

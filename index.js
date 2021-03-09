@@ -1,11 +1,4 @@
-
-
-
-
-
-
-// An api without database:
-/* const express = require('express');
+const express = require('express');
 const { body, validationResult } = require('express-validator');
 const app = express();
 // Process.env tarvitaan Herokua varten!
@@ -43,4 +36,4 @@ app.set('json spaces', 40);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-}); */
+});
